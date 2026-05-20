@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台語時間教學 - 點點聽</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #f0f8ff; /* 輕爽的天藍色背景 */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .time-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-card:hover {
+            transform: scale(1.05);
+            border-color: #ffd700; /* 金黃色邊框回饋 */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .time-card:active {
+            transform: scale(0.95);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+        }
+
+        /* 隱藏原生播放器 */
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // 總共 9 組圖文對應素材 (p5 系列圖檔對應 s5 系列音檔)
+    const itemCount = 9; 
+
+    for (let i = 1; i <= itemCount; i++) {
+        document.write(`
+            <div class="time-card" onclick="playTimeAudio('s5_${i}.mp3')">
+                <img src="p5_${i}.jpg" alt="時間教學圖卡">
+            </div>
+        `);
+    }
+
+    function playTimeAudio(fileName) {
+        const audio = new Audio(fileName);
+        audio.play().catch(error => {
+            console.error("播放失敗，請檢查檔名是否正確：" + fileName);
+        });
+    }
+</script>
+
+</body>
+</html>
